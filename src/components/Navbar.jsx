@@ -1,34 +1,45 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = ({ darkMode, setDarkMode }) => {
+  const maxWidth = "max-w-7";
   return (
-    <nav className="p-4">
+    <nav className="py-2 border-b-2 border-b-gray-400/30">
       <div className="flex justify-between items-center max-w-screen-xl mx-auto">
-        <div className="text-2xl font-bold">
-          <Link to="/" className="hover:text-neutral-500">
-            Siwoo JUNG
+        <div className="text-3xl font-bold">
+          <Link
+            to="/"
+            className="hover:text-neutral-500 dark:text-white font-serif"
+          >
+            Siwoo's Blog
           </Link>
         </div>
-        <ul className="flex space-x-6 text-white">
+        <ul className="flex items-center space-x-3">
           <li>
-            <Link to="/" className="hover:text-gray-200">
-              Home
+            <button onClick={() => setDarkMode(!darkMode)} className="flex ">
+              {darkMode ? (
+                <img src="src/assets/light_mode.svg" className={maxWidth}></img>
+              ) : (
+                <img src="src/assets/dark_mode.png" className={maxWidth}></img>
+              )}
+            </button>
+          </li>
+          <li>
+            <Link to="/" className="hover:text-neutral-500 ">
+              {darkMode ? (
+                <img src="src/assets/list_light.svg" className={maxWidth}></img>
+              ) : (
+                <img src="src/assets/list_dark.svg" className={maxWidth}></img>
+              )}
             </Link>
           </li>
           <li>
-            <Link to="/about" className="hover:text-gray-200">
-              About
-            </Link>
-          </li>
-          <li>
-            <Link to="/services" className="hover:text-gray-200">
-              Services
-            </Link>
-          </li>
-          <li>
-            <Link to="/contact" className="hover:text-gray-200">
-              Contact
+            <Link to="/" className="hover:text-neutral-500 ">
+              {darkMode ? (
+                <img src="src/assets/tag_light.svg" className={maxWidth}></img>
+              ) : (
+                <img src="src/assets/tag_dark.svg" className={maxWidth}></img>
+              )}
             </Link>
           </li>
         </ul>
