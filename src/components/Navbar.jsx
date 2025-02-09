@@ -1,44 +1,72 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import dark_mode_logo from "/public/assets/dark_mode.png";
+import light_mode_logo from "/public/assets/light_mode.svg";
+import list_dark_logo from "/public/assets/list_dark.svg";
+import list_light_logo from "/public/assets/list_light.svg";
+import tag_dark_logo from "/public/assets/tag_dark.svg";
+import tag_light_logo from "/public/assets/tag_light.svg";
 
 const Navbar = ({ darkMode, setDarkMode }) => {
-  const maxWidth = "max-w-7";
+  const maxWidth = "w-7";
+
   return (
-    <nav className="py-2 border-b-2 border-b-gray-400/30">
-      <div className="flex justify-between items-center max-w-screen-xl mx-auto">
-        <div className="text-3xl font-bold">
-          <Link
-            to="/"
-            className="hover:text-neutral-500 dark:text-white font-serif"
-          >
-            Siwoo's Blog
+    <nav className="flex px-5 py-5 border-b-2 border-b-gray-400/30 md:px-[10%] xl:px-[20%]">
+      <div className="w-[100%] flex justify-between">
+        <div className="text-xl md:text-3xl font-bold">
+          <Link to="/">
+            <p className="hover:text-neutral-500 font-serif">Siwoo's Blog</p>
           </Link>
         </div>
-        <ul className="flex items-center space-x-3">
+        <ul className="flex items-center space-x-4">
           <li>
-            <button onClick={() => setDarkMode(!darkMode)} className="flex ">
+            <button onClick={() => setDarkMode(!darkMode)} className="flex">
               {darkMode ? (
-                <img src="src/assets/light_mode.svg" className={maxWidth}></img>
+                <img
+                  src={light_mode_logo}
+                  className={maxWidth}
+                  alt="light_mode_logo"
+                ></img>
               ) : (
-                <img src="src/assets/dark_mode.png" className={maxWidth}></img>
+                <img
+                  src={dark_mode_logo}
+                  className={maxWidth}
+                  alt="dark_mode_logo"
+                ></img>
               )}
             </button>
           </li>
           <li>
             <Link to="/" className="hover:text-neutral-500 ">
               {darkMode ? (
-                <img src="src/assets/list_light.svg" className={maxWidth}></img>
+                <img
+                  src={list_light_logo}
+                  className={maxWidth}
+                  alt="list_light_logo"
+                ></img>
               ) : (
-                <img src="src/assets/list_dark.svg" className={maxWidth}></img>
+                <img
+                  src={list_dark_logo}
+                  className={maxWidth}
+                  alt="list_dark_logo"
+                ></img>
               )}
             </Link>
           </li>
           <li>
             <Link to="/" className="hover:text-neutral-500 ">
               {darkMode ? (
-                <img src="src/assets/tag_light.svg" className={maxWidth}></img>
+                <img
+                  src={tag_light_logo}
+                  className={maxWidth}
+                  alt="tag_light_logo"
+                ></img>
               ) : (
-                <img src="src/assets/tag_dark.svg" className={maxWidth}></img>
+                <img
+                  src={tag_dark_logo}
+                  className={maxWidth}
+                  alt="tag_dark_logo"
+                ></img>
               )}
             </Link>
           </li>

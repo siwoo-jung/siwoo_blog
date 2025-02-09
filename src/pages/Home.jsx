@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "./components/Navbar";
 import { HashRouter, Routes, Route } from "react-router-dom";
 import github_light_logo from "/public/assets/github_light.svg";
 import github_dark_logo from "/public/assets/github_dark.svg";
@@ -8,7 +7,7 @@ import linkedin_dark_logo from "/public/assets/linkedin_dark.svg";
 import mail_light_logo from "/public/assets/mail_light.svg";
 import mail_dark_logo from "/public/assets/mail_dark.svg";
 
-const App = () => {
+const Home = () => {
   const [darkMode, setDarkMode] = useState(
     localStorage.getItem("theme") === "dark"
   );
@@ -157,4 +156,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default Home;
