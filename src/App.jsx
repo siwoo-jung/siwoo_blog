@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import Navbar from "./components/Navbar";
 import { HashRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
-import Home2 from "./pages/Home2";
 
 const App = () => {
   const [darkMode, setDarkMode] = useState(
@@ -44,7 +43,7 @@ const App = () => {
       <Router>
         <Navbar darkMode={darkMode} setDarkMode={setDarkMode}></Navbar>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home darkMode={darkMode} />} />
         </Routes>
       </Router>
     </div>

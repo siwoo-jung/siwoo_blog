@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import dark_mode_logo from "/public/assets/dark_mode.png";
 import light_mode_logo from "/public/assets/light_mode.svg";
 import list_dark_logo from "/public/assets/list_dark.svg";
@@ -9,10 +8,6 @@ import tag_light_logo from "/public/assets/tag_light.svg";
 
 const Navbar = ({ darkMode, setDarkMode }) => {
   const maxWidth = "w-7";
-  const navigate = useNavigate();
-  const handleHomeClick = () => {
-    navigate("/");
-  };
 
   return (
     <nav
@@ -20,12 +15,9 @@ const Navbar = ({ darkMode, setDarkMode }) => {
     >
       <div className="w-[100%] flex justify-between">
         <div className="text-xl md:text-3xl font-bold">
-          <span
-            className="hover:text-neutral-500 font-serif"
-            onClick={handleHomeClick}
-          >
+          <a href="/" className="hover:text-neutral-500 font-serif">
             Siwoo's Blog
-          </span>
+          </a>
         </div>
         <ul className="flex items-center space-x-4">
           <li>
