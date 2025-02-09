@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import dark_mode_logo from "/public/assets/dark_mode.png";
 import light_mode_logo from "/public/assets/light_mode.svg";
 import list_dark_logo from "/public/assets/list_dark.svg";
@@ -9,14 +9,23 @@ import tag_light_logo from "/public/assets/tag_light.svg";
 
 const Navbar = ({ darkMode, setDarkMode }) => {
   const maxWidth = "w-7";
+  const navigate = useNavigate();
+  const handleHomeClick = () => {
+    navigate("/");
+  };
 
   return (
-    <nav className="flex px-5 py-5 border-b-2 border-b-gray-400/30 md:px-[10%] xl:px-[20%]">
+    <nav
+      className={`flex px-5 py-5 border-b-2 border-b-gray-400/30 md:px-[10%] xl:px-[20%]`}
+    >
       <div className="w-[100%] flex justify-between">
         <div className="text-xl md:text-3xl font-bold">
-          <Link to="/">
-            <p className="hover:text-neutral-500 font-serif">Siwoo's Blog</p>
-          </Link>
+          <span
+            className="hover:text-neutral-500 font-serif"
+            onClick={handleHomeClick}
+          >
+            Siwoo's Blog
+          </span>
         </div>
         <ul className="flex items-center space-x-4">
           <li>
@@ -37,7 +46,7 @@ const Navbar = ({ darkMode, setDarkMode }) => {
             </button>
           </li>
           <li>
-            <Link to="/" className="hover:text-neutral-500 ">
+            <div to="/" className="hover:text-neutral-500 ">
               {darkMode ? (
                 <img
                   src={list_light_logo}
@@ -51,10 +60,10 @@ const Navbar = ({ darkMode, setDarkMode }) => {
                   alt="list_dark_logo"
                 ></img>
               )}
-            </Link>
+            </div>
           </li>
           <li>
-            <Link to="/" className="hover:text-neutral-500 ">
+            <div to="/" className="hover:text-neutral-500 ">
               {darkMode ? (
                 <img
                   src={tag_light_logo}
@@ -68,7 +77,7 @@ const Navbar = ({ darkMode, setDarkMode }) => {
                   alt="tag_dark_logo"
                 ></img>
               )}
-            </Link>
+            </div>
           </li>
         </ul>
       </div>

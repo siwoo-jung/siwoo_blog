@@ -1,17 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { HashRouter, Routes, Route } from "react-router-dom";
-import github_light_logo from "/public/assets/github_light.svg";
-import github_dark_logo from "/public/assets/github_dark.svg";
-import linkedin_light_logo from "/public/assets/linkedin_light.svg";
-import linkedin_dark_logo from "/public/assets/linkedin_dark.svg";
-import mail_light_logo from "/public/assets/mail_light.svg";
-import mail_dark_logo from "/public/assets/mail_dark.svg";
+// import github_light_logo from "/public/assets/github_light.svg";
+// import github_dark_logo from "/public/assets/github_light.svg";
+// import linkedin_light_logo from "/public/assets/linkedin_light.svg";
+// import linkedin_dark_logo from "/public/assets/linkedin_dark.svg";
+// import mail_light_logo from "/public/assets/mail_light.svg";
+// import mail_dark_logo from "/public/assets/mail_dark.svg";
 
 const Home = () => {
-  const [darkMode, setDarkMode] = useState(
-    localStorage.getItem("theme") === "dark"
-  );
-
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 5;
@@ -35,16 +31,6 @@ const Home = () => {
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
 
-  useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add("dark");
-      localStorage.setItem("theme", "dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-      localStorage.setItem("theme", "light");
-    }
-  }, [darkMode]);
-
   return (
     <div className="bg-gray-100 min-h-screen min-w-screen dark:bg-black/90 ">
       {/* <a href="https://hits.sh/siwoo-jung.github.io/siwoo_blog/">
@@ -54,10 +40,6 @@ const Home = () => {
         />
       </a> */}
 
-      <HashRouter>
-        <Navbar darkMode={darkMode} setDarkMode={setDarkMode}></Navbar>
-        <Routes>{/* <Route path="about" element={<About />} /> */}</Routes>
-      </HashRouter>
       <div
         id="main-body"
         className={`border-3 flex flex-col space-y-10 mt-5 mx-5 md:mx-[100px] md:mt-10 xl:mx-[350px]`}
@@ -80,17 +62,17 @@ const Home = () => {
               passion and enthusiasm for the field.
             </p>
             <div id="links" className="flex flex-row">
-              <a
+              {/* <a
                 href="https://github.com/siwoo-jung"
                 className="flex justify-center"
               >
                 {darkMode ? (
-                  <img src={github_dark_logo} className="w-6"></img>
+                  <img src="/assets/github_light.svg" className="w-6"></img>
                 ) : (
-                  <img src={github_light_logo} className="w-6"></img>
+                  <img src="/assets/github_dark.svg" className="w-6"></img>
                 )}
-              </a>
-              <a
+              </a> */}
+              {/* <a
                 href="https://www.linkedin.com/in/siwoojung/"
                 className="flex justify-center"
               >
@@ -109,7 +91,7 @@ const Home = () => {
                 ) : (
                   <img src={mail_light_logo} className="w-5"></img>
                 )}
-              </a>
+              </a> */}
             </div>
           </div>
         </div>
