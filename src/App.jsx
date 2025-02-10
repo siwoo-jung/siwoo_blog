@@ -1,9 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import Navbar from "./components/Navbar";
-import { HashRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Tags from "./pages/Tags";
 import PostPage from "./pages/PostPage";
+import { HelmetProvider } from "react-helmet-async";
 
 const App = () => {
   const [darkMode, setDarkMode] = useState(
@@ -28,14 +29,16 @@ const App = () => {
           src="https://hits.sh/siwoo-jung.github.io/siwoo_blog.svg?view=today-total&style=plastic&label=visitors&color=000000&labelColor=000000"
         />
       </a> */}
-      <Router>
-        <Navbar darkMode={darkMode} setDarkMode={setDarkMode}></Navbar>
-        <Routes>
-          <Route path="/" element={<Home darkMode={darkMode} />} />
-          <Route path="/tags/:current_tag" element={<Tags />} />
-          <Route path="/posts/:postId" element={<PostPage />} />
-        </Routes>
-      </Router>
+      <HelmetProvider>
+        <Router>
+          <Navbar darkMode={darkMode} setDarkMode={setDarkMode}></Navbar>
+          <Routes>
+            <Route path="/" element={<Home darkMode={darkMode} />} />
+            <Route path="/tags/:current_tag" element={<Tags />} />
+            <Route path="/posts/:postId" element={<PostPage />} />
+          </Routes>
+        </Router>
+      </HelmetProvider>
     </div>
   );
 };

@@ -3,6 +3,7 @@ import { PostsContext } from "../components/PostsProvider";
 import ReactMarkdown from "react-markdown";
 import { useParams } from "react-router-dom";
 import TagButton from "../components/TagButton";
+import { Helmet } from "react-helmet-async";
 
 const PostPage = () => {
   const { postId } = useParams();
@@ -20,6 +21,23 @@ const PostPage = () => {
 
   return (
     <div className="main-margin border-3">
+      <Helmet>
+        <title>{`${post.title} | My Blog`}</title>
+        <meta name="description" content={post.description} />
+        <meta name="keywords" content={post.tags.join(", ")} />
+        <meta property="og:title" content={post.title} />
+        <meta property="og:description" content={post.description} />
+        <meta property="og:type" content="article" />
+        <meta
+          property="og:url"
+          content={`https://siwoo-jung.github.io/posts/${postId}`}
+        />
+        <meta property="og:image" content="/default-thumbnail.jpg" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={post.title} />
+        <meta name="twitter:description" content={post.description} />
+        <meta name="twitter:image" content="/default-thumbnail.jpg" />
+      </Helmet>
       <h1 className="text-xl md:text-4xl font-bold text-center dark:text-gray-600 font-mono">
         {post.title}
       </h1>

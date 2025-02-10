@@ -132,7 +132,7 @@ const Home = ({ darkMode }) => {
                 <a
                   key={tag.name}
                   className="w-full flex flex-row justify-between items-center"
-                  href={`/#/tags/${tag.name}`}
+                  href={`/tags/${tag.name}`}
                 >
                   <p className="text-gray-700">{tag.name}</p>
                   <div className="rounded-sm bg-gray-300 dark:bg-gray-800">

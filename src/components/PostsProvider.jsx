@@ -2,13 +2,13 @@ import React, { createContext, useState } from "react";
 
 export const PostsContext = createContext();
 
-const initialPostData = [
+export const initialPostData = [
   {
     id: 1,
     title: "This is title your title his title their title",
     description: "먼저 p리고 최대…",
     date: "2024-01-01",
-    link: "/#/posts/1",
+    link: "/posts/1",
     tags: ["Spring", "Design Pattern"],
     markdownFile: "/posts/1.md",
   },
@@ -18,7 +18,7 @@ const initialPostData = [
     title: "title2",
     description: "개발을 하다 보면 소다…",
     date: "2025-01-01",
-    link: "/#/posts/2",
+    link: "/posts/2",
     tags: ["Kotlin"],
     markdownFile: "/posts/2.md",
   },
