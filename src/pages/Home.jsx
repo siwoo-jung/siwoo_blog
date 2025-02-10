@@ -17,10 +17,7 @@ const Home = ({ darkMode }) => {
 
   return (
     <div className="min-h-screen min-w-screen">
-      <div
-        id="main-body"
-        className={`flex flex-col space-y-10 mx-5 md:mx-[100px] xl:mx-[300px] 2xl:mx-[500px]`}
-      >
+      <div id="main-body" className={`flex flex-col space-y-10 main-margin`}>
         <div id="profile" className="flex flex-row space-x-5 items-center">
           <div id="selfie">
             <img
@@ -103,15 +100,14 @@ const Home = ({ darkMode }) => {
                 <div key={post.id} className="space-y-10 w-full">
                   <hr className="border-stone-300 border-1.5"></hr>
                   <li key={post.id} className="flex flex-col">
-                    <a
-                      href={post.link}
-                      className="text-2xl md:text-center font-bold font-mono"
-                    >
-                      <p>{post.title}</p>
+                    <a href={post.link}>
+                      <h1 className="text-2xl md:text-center font-bold font-mono">
+                        {post.title}
+                      </h1>
                     </a>
-                    <h1 className="mt-5 text-stone-500 font-bold text-[15px]">
+                    <p className="mt-5 text-stone-500 font-bold text-[15px]">
                       {post.date}
-                    </h1>
+                    </p>
                     <p className="mt-3">{post.description}</p>
                     <div className="flex flex-row space-x-3 mt-5">
                       {post.tags.map((tag, index) => (

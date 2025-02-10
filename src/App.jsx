@@ -3,6 +3,7 @@ import Navbar from "./components/Navbar";
 import { HashRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Tags from "./pages/Tags";
+import PostPage from "./pages/PostPage";
 
 const App = () => {
   const [darkMode, setDarkMode] = useState(
@@ -32,6 +33,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home darkMode={darkMode} />} />
           <Route path="/tags/:current_tag" element={<Tags />} />
+          <Route path="/posts/:postId" element={<PostPage />} />
         </Routes>
       </Router>
     </div>

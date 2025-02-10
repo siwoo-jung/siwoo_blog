@@ -6,6 +6,10 @@
     /* --color-mint-500: oklch(0.72 0.11 178); */
 }
 
-p {
-    @apply dark:text-white
+p, h1{
+    @apply dark:text-white 
+}
+
+.main-margin {
+    @apply mx-5 md:mx-[100px] xl:mx-[300px] 2xl:mx-[500px]
 }
