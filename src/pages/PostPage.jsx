@@ -1,9 +1,10 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { lazy, Suspense, useContext, useEffect, useState } from "react";
 import { PostsContext } from "../components/PostsProvider";
 import ReactMarkdown from "react-markdown";
 import { useParams } from "react-router-dom";
 import TagButton from "../components/TagButton";
 import { Helmet } from "react-helmet-async";
+import PostContent from "../components/PostContent";
 
 const PostPage = () => {
   const { postId } = useParams();
@@ -49,7 +50,7 @@ const PostPage = () => {
         ))}
       </div>
       <hr className="border-stone-300 border-1.5 mt-5"></hr>
-      <ReactMarkdown className="mt-10">{content}</ReactMarkdown>
+      <PostContent postId={postId}></PostContent>
     </div>
   );
 };

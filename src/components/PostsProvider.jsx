@@ -10,7 +10,7 @@ export const initialPostData = [
     date: "2024-01-01",
     link: "/posts/1",
     tags: ["Spring", "Design Pattern"],
-    markdownFile: "/posts/1.md",
+    markdownFile: "/posts/1.html",
   },
 
   {
@@ -20,7 +20,7 @@ export const initialPostData = [
     date: "2025-01-01",
     link: "/posts/2",
     tags: ["Kotlin"],
-    markdownFile: "/posts/2.md",
+    markdownFile: "/posts/2.html",
   },
 ];
 
