@@ -11,7 +11,7 @@ const Navbar = ({ darkMode, setDarkMode }) => {
 
   return (
     <nav
-      className={`flex px-5 py-5 border-b-2 border-b-gray-400/30 md:px-[10%] xl:px-[20%]`}
+      className={`flex px-5 py-5 border-b-2 border-b-gray-400/30 md:px-[10%] xl:px-[20%] mb-10 xl:mb-20`}
     >
       <div className="w-[100%] flex justify-between">
         <div className="text-xl md:text-3xl font-bold">

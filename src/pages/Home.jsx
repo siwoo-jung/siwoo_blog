@@ -1,45 +1,25 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import TagButton from "../components/TagButton";
+import { PostsContext } from "../components/PostsProvider";
 
 const Home = ({ darkMode }) => {
-  const [posts, setPosts] = useState([]);
-  const [tags, setTags] = useState([]);
+  const { postsData = [], tagsData = [] } = useContext(PostsContext);
+
+  const posts = postsData;
+  const tags = tagsData;
+
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 5;
-  const [loaded, setLoaded] = useState(false);
-
-  useEffect(() => {
-    fetch("/postInfo.json")
-      .then((res) => res.json())
-      .then((data) => {
-        console.log("Fetched posts:", data[0].posts);
-        console.log("Fetched tags:", data[1].tags);
-        setPosts(data[0].posts);
-        setTags(data[1].tags);
-        setLoaded(true);
-      })
-      .catch((err) => {
-        console.log("Error fetching posts:", err);
-        setLoaded(false);
-      });
-  }, []);
-
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
+
   const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
 
   return (
     <div className="min-h-screen min-w-screen">
-      {/* <a href="https://hits.sh/siwoo-jung.github.io/siwoo_blog/">
-        <img
-          alt="Hits"
-          src="https://hits.sh/siwoo-jung.github.io/siwoo_blog.svg?view=today-total&style=plastic&label=visitors&color=000000&labelColor=000000"
-        />
-      </a> */}
-
       <div
         id="main-body"
-        className={`flex flex-col space-y-10 mt-5 mx-5 md:mx-[100px] md:mt-20 xl:mx-[300px] 2xl:mx-[500px]`}
+        className={`flex flex-col space-y-10 mx-5 md:mx-[100px] xl:mx-[300px] 2xl:mx-[500px]`}
       >
         <div id="profile" className="flex flex-row space-x-5 items-center">
           <div id="selfie">
@@ -115,37 +95,36 @@ const Home = ({ darkMode }) => {
             </div>
           </div>
         </div>
-        <div id="main_body" className=" flex flex-row justify-between border-3">
-          {
-            <ul id="posts" className="space-y-10 w-full">
-              {posts.length > 0 ? (
-                posts.map((post) => (
-                  <div className="space-y-10 border-3 w-full">
-                    <hr className="border-stone-300 border-1.5"></hr>
-                    <li key={post.id} className="flex flex-col">
-                      <a
-                        href={post.link}
-                        className="text-2xl md:text-center font-bold font-mono"
-                      >
-                        <p>{post.title}</p>
-                      </a>
-                      <h1 className="mt-5 text-stone-500 font-bold text-[15px]">
-                        {post.date}
-                      </h1>
-                      <p className="mt-3">{post.description}</p>
-                      <div className="flex flex-row space-x-3 mt-5">
-                        {post.tags.map((tag) => (
-                          <TagButton tag={tag} />
-                        ))}
-                      </div>
-                    </li>
-                  </div>
-                ))
-              ) : (
-                <p>No posts available.</p>
-              )}
-            </ul>
-          }
+
+        <div id="main_body" className="flex flex-row justify-between border-3">
+          <ul id="posts" className="space-y-10 w-full">
+            {posts.length > 0 ? (
+              currentPosts.map((post) => (
+                <div key={post.id} className="space-y-10 w-full">
+                  <hr className="border-stone-300 border-1.5"></hr>
+                  <li key={post.id} className="flex flex-col">
+                    <a
+                      href={post.link}
+                      className="text-2xl md:text-center font-bold font-mono"
+                    >
+                      <p>{post.title}</p>
+                    </a>
+                    <h1 className="mt-5 text-stone-500 font-bold text-[15px]">
+                      {post.date}
+                    </h1>
+                    <p className="mt-3">{post.description}</p>
+                    <div className="flex flex-row space-x-3 mt-5">
+                      {post.tags.map((tag, index) => (
+                        <TagButton key={index} tag={tag} />
+                      ))}
+                    </div>
+                  </li>
+                </div>
+              ))
+            ) : (
+              <p>No posts available.</p>
+            )}
+          </ul>
 
           <div
             id="navigation"
@@ -155,6 +134,7 @@ const Home = ({ darkMode }) => {
             <ul className="flex flex-col items-center w-full space-y-2">
               {tags.map((tag) => (
                 <a
+                  key={tag.name}
                   className="w-full flex flex-row justify-between items-center"
                   href={`/#/tags/${tag.name}`}
                 >
