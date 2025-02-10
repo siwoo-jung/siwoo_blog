@@ -15,8 +15,8 @@ const Navbar = ({ darkMode, setDarkMode }) => {
     >
       <div className="w-[100%] flex justify-between">
         <div className="text-xl md:text-3xl font-bold">
-          <a href="/" className="hover:text-neutral-500 font-serif">
-            Siwoo's Blog
+          <a href="/" className="hover:text-neutral-500">
+            <p className="font-serif">Siwoo's Blog</p>
           </a>
         </div>
         <ul className="flex items-center space-x-4">

@@ -1,17 +1,21 @@
 import React, { useEffect, useState } from "react";
+import TagButton from "../components/TagButton";
 
 const Home = ({ darkMode }) => {
   const [posts, setPosts] = useState([]);
+  const [tags, setTags] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 5;
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    fetch("/posts.json")
+    fetch("/postInfo.json")
       .then((res) => res.json())
       .then((data) => {
-        console.log("Fetched posts:", data);
-        setPosts(data);
+        console.log("Fetched posts:", data[0].posts);
+        console.log("Fetched tags:", data[1].tags);
+        setPosts(data[0].posts);
+        setTags(data[1].tags);
         setLoaded(true);
       })
       .catch((err) => {
@@ -25,7 +29,7 @@ const Home = ({ darkMode }) => {
   const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
 
   return (
-    <div className="bg-gray-100 min-h-screen min-w-screen dark:bg-black/90 ">
+    <div className="min-h-screen min-w-screen">
       {/* <a href="https://hits.sh/siwoo-jung.github.io/siwoo_blog/">
         <img
           alt="Hits"
@@ -35,12 +39,9 @@ const Home = ({ darkMode }) => {
 
       <div
         id="main-body"
-        className={`border-3 flex flex-col space-y-10 mt-5 mx-5 md:mx-[100px] md:mt-10 xl:mx-[350px]`}
+        className={`flex flex-col space-y-10 mt-5 mx-5 md:mx-[100px] md:mt-20 xl:mx-[300px] 2xl:mx-[500px]`}
       >
-        <div
-          id="profile"
-          className="flex flex-row justify-center space-x-5 items-center"
-        >
+        <div id="profile" className="flex flex-row space-x-5 items-center">
           <div id="selfie">
             <img
               src="/assets/selfie.png"
@@ -114,30 +115,27 @@ const Home = ({ darkMode }) => {
             </div>
           </div>
         </div>
-        <div
-          id="main_body"
-          className=" flex flex-row justify-between space-x-[100px]"
-        >
+        <div id="main_body" className=" flex flex-row justify-between border-3">
           {
-            <ul id="posts" className=" w-full space-y-10">
+            <ul id="posts" className="space-y-10 w-full">
               {posts.length > 0 ? (
                 posts.map((post) => (
-                  <div className="space-y-10">
+                  <div className="space-y-10 border-3 w-full">
                     <hr className="border-stone-300 border-1.5"></hr>
                     <li key={post.id} className="flex flex-col">
                       <a
                         href={post.link}
                         className="text-2xl md:text-center font-bold font-mono"
                       >
-                        {post.title}
+                        <p>{post.title}</p>
                       </a>
-                      <p className="mt-5 text-stone-500 font-bold text-[15px]">
+                      <h1 className="mt-5 text-stone-500 font-bold text-[15px]">
                         {post.date}
-                      </p>
+                      </h1>
                       <p className="mt-3">{post.description}</p>
                       <div className="flex flex-row space-x-3 mt-5">
                         {post.tags.map((tag) => (
-                          <button className="border-1">{tag}</button>
+                          <TagButton tag={tag} />
                         ))}
                       </div>
                     </li>
@@ -151,9 +149,24 @@ const Home = ({ darkMode }) => {
 
           <div
             id="navigation"
-            className="invisible w-0 border-3 xl:w-[15%] xl:visible"
+            className="border-1 invisible w-0 xl:w-[20%] xl:visible xl:ml-[100px] flex flex-col space-y-4 items-center"
           >
-            asdfasdfadsf
+            <p className="font-bold text-blue-600 ">Tag List</p>
+            <ul className="flex flex-col items-center w-full space-y-2">
+              {tags.map((tag) => (
+                <a
+                  className="w-full flex flex-row justify-between items-center"
+                  href={`/#/tags/${tag.name}`}
+                >
+                  <p className="text-gray-700">{tag.name}</p>
+                  <div className="rounded-sm bg-gray-300 dark:bg-gray-800">
+                    <p className="w-[20px] text-center text-[14px]">
+                      {tag.count}
+                    </p>
+                  </div>
+                </a>
+              ))}
+            </ul>
           </div>
         </div>
       </div>
